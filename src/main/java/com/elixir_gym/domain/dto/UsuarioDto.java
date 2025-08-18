@@ -13,6 +13,6 @@ public record UsuarioDto(
         Double peso,
         Double altura,
         LocalDate fechaRegistro,
-        Boolean estado
+        String estado
 ) {
 }

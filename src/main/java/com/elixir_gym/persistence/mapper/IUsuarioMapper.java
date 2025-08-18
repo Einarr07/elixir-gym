@@ -10,7 +10,7 @@ import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {EstadoUsuarioMapper.class})
 public interface IUsuarioMapper {
 
     @Mapping(source = "nombre", target = "nombre")
@@ -22,11 +22,12 @@ public interface IUsuarioMapper {
     @Mapping(source = "peso", target = "peso")
     @Mapping(source = "altura", target = "altura")
     @Mapping(source = "fechaRegistro", target = "fechaRegistro")
-    @Mapping(source = "estado", target = "estado")
+    @Mapping(source = "estadoUsuario", target = "estado", qualifiedByName = "booleanToString")
     UsuarioDto toDto(UsuarioEntity usuarioEntity);
     List<UsuarioDto> toDtoList(Iterable<UsuarioEntity> usuarioEntityIterable);
 
     @InheritInverseConfiguration
+    @Mapping(source = "estado", target = "estadoUsuario", qualifiedByName = "stringToBoolean")
     UsuarioEntity toEntity(UsuarioDto usuarioDto);
 
     @Mapping(source = "nombre", target = "nombre")
@@ -37,6 +38,6 @@ public interface IUsuarioMapper {
     @Mapping(source = "fechaNacimiento", target = "fechaNacimiento")
     @Mapping(source = "peso", target = "peso")
     @Mapping(source = "altura", target = "altura")
-    @Mapping(source = "estado", target = "estado")
+    @Mapping(source = "estado", target = "estadoUsuario", qualifiedByName = "stringToBoolean")
     void updateUsuario(ActualizarUsuarioDto usuarioDto, @MappingTarget UsuarioEntity usuarioEntity);
 }
