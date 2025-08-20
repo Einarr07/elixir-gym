@@ -10,7 +10,7 @@ import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {EstadoUsuarioMapper.class})
+@Mapper(componentModel = "spring", uses = {EstadoUsuarioMapper.class, IRolMapper.class})
 public interface IUsuarioMapper {
 
     @Mapping(source = "nombre", target = "nombre")
@@ -23,6 +23,7 @@ public interface IUsuarioMapper {
     @Mapping(source = "altura", target = "altura")
     @Mapping(source = "fechaRegistro", target = "fechaRegistro")
     @Mapping(source = "estadoUsuario", target = "estado", qualifiedByName = "booleanToString")
+    @Mapping(source = "roles", target = "roles")
     UsuarioDto toDto(UsuarioEntity usuarioEntity);
     List<UsuarioDto> toDtoList(Iterable<UsuarioEntity> usuarioEntityIterable);
 

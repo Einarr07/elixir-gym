@@ -1,9 +1,10 @@
 package com.elixir_gym.domain.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public record UsuarioDto(
-        Long id_usuario,
+        Long idUsuario,
         String nombre,
         String apellido,
         String correo,
@@ -13,6 +14,7 @@ public record UsuarioDto(
         Double peso,
         Double altura,
         LocalDate fechaRegistro,
-        String estado
+        String estado,
+        List<RolDto> roles
 ) {
 }

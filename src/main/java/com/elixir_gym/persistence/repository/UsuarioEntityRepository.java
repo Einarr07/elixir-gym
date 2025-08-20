@@ -2,8 +2,6 @@ package com.elixir_gym.persistence.repository;
 
 import com.elixir_gym.domain.dto.ActualizarUsuarioDto;
 import com.elixir_gym.domain.dto.UsuarioDto;
-import com.elixir_gym.domain.exception.CorreoRegistradoException;
-import com.elixir_gym.domain.exception.UsuarioInexistenteException;
 import com.elixir_gym.domain.repository.IUsuarioRepository;
 import com.elixir_gym.persistence.crud.ICrudUsuarioEntity;
 import com.elixir_gym.persistence.entity.UsuarioEntity;

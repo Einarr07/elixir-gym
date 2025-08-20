@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -17,7 +18,8 @@ public class UsuarioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_usuario;
+    @Column(name = "id_usuario")
+    private Long idUsuario;
 
     @Column(nullable = false, length = 50)
     private String nombre;
@@ -52,4 +54,12 @@ public class UsuarioEntity {
 
     @Column(name = "estado_usuario", nullable = false)
     private Boolean estadoUsuario;
+
+    @ManyToMany
+    @JoinTable(
+            name = "usuarios_roles", // nombre de la tabla intermedia
+            joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_rol")
+    )
+    private List<RolEntity> roles;
 }
