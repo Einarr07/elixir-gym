@@ -1,6 +1,6 @@
 package com.elixir_gym.persistence.repository;
 
-import com.elixir_gym.domain.dto.ActualizarGrupoMuscularDto;
+import com.elixir_gym.domain.dto.updates.ActualizarGrupoMuscularDto;
 import com.elixir_gym.domain.dto.GrupoMuscularDto;
 import com.elixir_gym.domain.repository.IGrupoMuscularRepository;
 import com.elixir_gym.persistence.crud.ICrudGrupoMuscularEntity;

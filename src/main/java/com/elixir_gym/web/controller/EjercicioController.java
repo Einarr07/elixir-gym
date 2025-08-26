@@ -1,6 +1,6 @@
 package com.elixir_gym.web.controller;
 
-import com.elixir_gym.domain.dto.ActualizarEjercicioDto;
+import com.elixir_gym.domain.dto.updates.ActualizarEjercicioDto;
 import com.elixir_gym.domain.dto.EjercicioDto;
 import com.elixir_gym.domain.service.EjercicioService;
 import jakarta.validation.Valid;

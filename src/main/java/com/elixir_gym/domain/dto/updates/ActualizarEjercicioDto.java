@@ -1,5 +1,6 @@
-package com.elixir_gym.domain.dto;
+package com.elixir_gym.domain.dto.updates;
 
+import com.elixir_gym.domain.dto.GrupoMuscularDto;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 

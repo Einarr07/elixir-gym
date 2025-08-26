@@ -1,6 +1,6 @@
 package com.elixir_gym.persistence.repository;
 
-import com.elixir_gym.domain.dto.ActualizarUsuarioDto;
+import com.elixir_gym.domain.dto.updates.ActualizarUsuarioDto;
 import com.elixir_gym.domain.dto.UsuarioDto;
 import com.elixir_gym.domain.repository.IUsuarioRepository;
 import com.elixir_gym.persistence.crud.ICrudUsuarioEntity;

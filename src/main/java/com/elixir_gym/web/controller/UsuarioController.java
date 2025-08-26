@@ -1,6 +1,6 @@
 package com.elixir_gym.web.controller;
 
-import com.elixir_gym.domain.dto.ActualizarUsuarioDto;
+import com.elixir_gym.domain.dto.updates.ActualizarUsuarioDto;
 import com.elixir_gym.domain.dto.UsuarioDto;
 import com.elixir_gym.domain.service.UsuarioService;
 import jakarta.validation.Valid;

@@ -1,6 +1,6 @@
 package com.elixir_gym.domain.repository;
 
-import com.elixir_gym.domain.dto.ActualizarGrupoMuscularDto;
+import com.elixir_gym.domain.dto.updates.ActualizarGrupoMuscularDto;
 import com.elixir_gym.domain.dto.GrupoMuscularDto;
 
 import java.util.List;

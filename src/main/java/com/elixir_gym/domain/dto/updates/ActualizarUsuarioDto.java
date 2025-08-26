@@ -1,4 +1,4 @@
-package com.elixir_gym.domain.dto;
+package com.elixir_gym.domain.dto.updates;
 
 import jakarta.validation.constraints.*;
 

@@ -1,6 +1,6 @@
 package com.elixir_gym.persistence.mapper;
 
-import com.elixir_gym.domain.dto.ActualizarGrupoMuscularDto;
+import com.elixir_gym.domain.dto.updates.ActualizarGrupoMuscularDto;
 import com.elixir_gym.domain.dto.GrupoMuscularDto;
 import com.elixir_gym.persistence.entity.GrupoMuscularEntity;
 import org.mapstruct.InheritInverseConfiguration;

@@ -1,18 +1,18 @@
 package com.elixir_gym.persistence.repository;
 
-import com.elixir_gym.domain.dto.ActualizarEjercicioDto;
+import com.elixir_gym.domain.dto.updates.ActualizarEjercicioDto;
 import com.elixir_gym.domain.dto.EjercicioDto;
 import com.elixir_gym.domain.repository.IEjercicioRepository;
 import com.elixir_gym.persistence.crud.ICrudEjercicioEntity;
 import com.elixir_gym.persistence.entity.EjercicioEntity;
 import com.elixir_gym.persistence.mapper.IEjercicioMapper;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Repository
 @AllArgsConstructor
 public class EjercicioRepository implements IEjercicioRepository {
 

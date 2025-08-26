@@ -1,6 +1,6 @@
 package com.elixir_gym.web.controller;
 
-import com.elixir_gym.domain.dto.ActualizarGrupoMuscularDto;
+import com.elixir_gym.domain.dto.updates.ActualizarGrupoMuscularDto;
 import com.elixir_gym.domain.dto.GrupoMuscularDto;
 import com.elixir_gym.domain.service.GrupoMuscularService;
 import jakarta.validation.Valid;

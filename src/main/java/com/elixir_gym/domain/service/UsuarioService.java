@@ -1,6 +1,6 @@
 package com.elixir_gym.domain.service;
 
-import com.elixir_gym.domain.dto.ActualizarUsuarioDto;
+import com.elixir_gym.domain.dto.updates.ActualizarUsuarioDto;
 import com.elixir_gym.domain.dto.UsuarioDto;
 import com.elixir_gym.domain.exception.CorreoRegistradoException;
 import com.elixir_gym.domain.exception.UsuarioInexistenteException;
