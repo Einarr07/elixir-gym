@@ -15,7 +15,6 @@ public interface IGrupoMuscularMapper {
 
     @Mapping(source = "nombre", target = "nombre")
     @Mapping(source = "descripcion", target = "descripcion")
-    @Mapping(source = "ejercicio", target = "ejercicio")
     GrupoMuscularDto toDto(GrupoMuscularEntity grupoMuscularEntity);
     List<GrupoMuscularDto> toDtoList(Iterable<GrupoMuscularEntity> grupoMuscularEntities);
 
@@ -24,6 +23,6 @@ public interface IGrupoMuscularMapper {
 
     @Mapping(source = "nombre", target = "nombre")
     @Mapping(source = "descripcion", target = "descripcion")
-    @Mapping(source = "ejercicio", target = "ejercicio")
+    @Mapping(target = "ejercicio", ignore = true)
     void updateGrupoMuscular(ActualizarGrupoMuscularDto actualizarGrupoMuscularDto, @MappingTarget GrupoMuscularEntity grupoMuscularEntity);
 }

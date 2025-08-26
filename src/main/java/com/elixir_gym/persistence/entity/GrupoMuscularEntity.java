@@ -17,7 +17,7 @@ public class GrupoMuscularEntity {
     @Column(name = "id_grupo_muscular")
     private Long idGrupoMuscular;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nombre;
 
     @Column(columnDefinition = "TEXT")
