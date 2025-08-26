@@ -1,8 +1,14 @@
 package com.elixir_gym.domain.exception;
 
-public class CorreoRegistradoException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class CorreoRegistradoException extends AppException {
 
     public CorreoRegistradoException(String email) {
-        super("EL correo " + email + " ya existe");;
+        super(
+                "Correo registrado",
+                "EL correo " + email + " ya existe",
+                HttpStatus.BAD_REQUEST
+        );
     }
 }

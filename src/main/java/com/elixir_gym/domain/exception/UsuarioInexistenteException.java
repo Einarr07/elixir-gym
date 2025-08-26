@@ -1,8 +1,14 @@
 package com.elixir_gym.domain.exception;
 
-public class UsuarioInexistenteException extends RuntimeException{
+import org.springframework.http.HttpStatus;
+
+public class UsuarioInexistenteException extends AppException{
 
     public UsuarioInexistenteException(long id) {
-        super("El usuario con el ID: " + id + " no existe");
+        super(
+                "Usuario inexistente",
+                "El usuario con el id " + id + " no existe",
+                HttpStatus.BAD_REQUEST
+        );
     }
 }

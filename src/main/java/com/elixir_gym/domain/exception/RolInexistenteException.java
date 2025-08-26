@@ -1,8 +1,14 @@
 package com.elixir_gym.domain.exception;
 
-public class RolInexistenteException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class RolInexistenteException extends AppException {
 
     public RolInexistenteException(long id) {
-        super("El rol con el ID: " + id + " no existe");
+        super(
+                "Rol inexistente",
+                "El rol con el id " + id + " no existe",
+                HttpStatus.BAD_REQUEST
+        );
     }
 }

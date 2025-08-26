@@ -23,7 +23,7 @@ public class UsuarioService {
 
     public Optional<UsuarioDto> findById(long id) {
 
-        return verificarExistencia(id);
+        return existenceChecker(id);
 
     }
 
@@ -36,18 +36,18 @@ public class UsuarioService {
     }
 
     public Optional<UsuarioDto> update(long id, ActualizarUsuarioDto usuarioDto) {
-        verificarExistencia(id);
+        existenceChecker(id);
 
         return usuarioRepository.update(id, usuarioDto);
     }
 
     public void deleteById(Long id) {
-        verificarExistencia(id);
+        existenceChecker(id);
 
         usuarioRepository.deleteById(id);
     }
 
-    private Optional<UsuarioDto> verificarExistencia(long id) {
+    private Optional<UsuarioDto> existenceChecker(long id) {
         Optional<UsuarioDto> usuarioExistente = usuarioRepository.findById(id);
 
         if (usuarioExistente.isEmpty()) {

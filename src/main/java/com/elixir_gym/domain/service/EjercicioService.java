@@ -2,11 +2,13 @@ package com.elixir_gym.domain.service;
 
 import com.elixir_gym.domain.dto.ActualizarEjercicioDto;
 import com.elixir_gym.domain.dto.EjercicioDto;
+import com.elixir_gym.domain.exception.EjercicioInexistenteException;
 import com.elixir_gym.domain.repository.IEjercicioRepository;
 import com.elixir_gym.persistence.repository.EjercicioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +23,7 @@ public class EjercicioService {
     }
 
     public Optional<EjercicioDto> findById(long id) {
-        return ejercicioRepository.findEjercicioById(id);
+        return existenceChecker(id);
     }
 
     public EjercicioDto save(EjercicioDto ejercicioDto) {
@@ -29,16 +31,23 @@ public class EjercicioService {
     }
 
     public Optional<EjercicioDto> updateEjercicio(long id, ActualizarEjercicioDto actualizarEjercicioDto) {
-        Optional<EjercicioDto> ejercicioExistente = ejercicioRepository.findEjercicioById(id);
-
-        if (ejercicioExistente.isEmpty()) {
-            return Optional.empty();
-        }
+        existenceChecker(id);
 
         return ejercicioRepository.updateEjercicio(id, actualizarEjercicioDto);
     }
 
     public void deleteEjercicioById(long id) {
+        existenceChecker(id);
         ejercicioRepository.deleteById(id);
+    }
+
+    public Optional<EjercicioDto> existenceChecker(long id) {
+        Optional<EjercicioDto> ejercicioExistente = ejercicioRepository.findEjercicioById(id);
+
+        if (ejercicioExistente.isEmpty()) {
+            throw new EjercicioInexistenteException(id);
+        }
+
+        return ejercicioExistente;
     }
 }

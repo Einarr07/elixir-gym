@@ -2,6 +2,7 @@ package com.elixir_gym.domain.service;
 
 import com.elixir_gym.domain.dto.ActualizarGrupoMuscularDto;
 import com.elixir_gym.domain.dto.GrupoMuscularDto;
+import com.elixir_gym.domain.exception.GrupoMuscularInexistenteException;
 import com.elixir_gym.domain.repository.IGrupoMuscularRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class GrupoMuscularService {
     }
 
     public Optional<GrupoMuscularDto> findById(long id) {
-        return grupoMuscularRepository.findById(id);
+        return existenceChecker(id);
     }
 
     public GrupoMuscularDto save(GrupoMuscularDto dto) {
@@ -28,15 +29,25 @@ public class GrupoMuscularService {
     }
 
     public Optional<GrupoMuscularDto> update(long id, ActualizarGrupoMuscularDto actualizarGrupoMuscularDto) {
-        Optional<GrupoMuscularDto> grupoExistente = this.findById(id);
-        if (grupoExistente.isEmpty()) {
-            return Optional.empty();
-        }
+        existenceChecker(id);
 
         return grupoMuscularRepository.update(id, actualizarGrupoMuscularDto);
     }
 
     public void deleteGrupoMuscular(long id) {
+
+        existenceChecker(id);
+
         grupoMuscularRepository.delteById(id);
+    }
+
+    public Optional<GrupoMuscularDto> existenceChecker(long id) {
+        Optional<GrupoMuscularDto> grupoExistente = grupoMuscularRepository.findById(id);
+
+        if (grupoExistente.isEmpty()) {
+            throw new GrupoMuscularInexistenteException(id);
+        }
+
+        return grupoExistente;
     }
 }
