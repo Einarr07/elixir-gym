@@ -34,7 +34,7 @@ public class EntrenamientoEjercicioEntity {
     @Column(nullable = false)
     private Integer repeticiones;
 
-    @DecimalMin(value = "0.00", inclusive = true, message = "El peso minimo es de 1kg")
+    @DecimalMin(value = "1.00", inclusive = true, message = "El peso minimo es de 1kg")
     @DecimalMax(value = "500.00", inclusive = true, message = "El peso maximo es de 500kg")
     @Column(precision = 5, scale = 2, columnDefinition = "DECIMAL(5,2)")
     private BigDecimal pesoSugerido;
