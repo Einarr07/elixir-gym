@@ -7,6 +7,7 @@ public record EjercicioDto(
         String video,
         String imagen,
         String equipo_necesario,
-        GrupoMuscularDto grupo_muscular
+        GrupoMuscularDto grupo_muscular,
+        EquipoDto equipos
 ) {
 }

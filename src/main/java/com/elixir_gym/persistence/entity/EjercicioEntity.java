@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.List;
+
 @Entity
 @Table(name = "ejercicios")
 @EntityListeners(AuditingEntityListener.class)
@@ -39,4 +41,12 @@ public class EjercicioEntity extends AuditableEntity {
             nullable = false
     )
     private GrupoMuscularEntity grupo;
+
+    @ManyToMany
+    @JoinTable(
+            name = "ejercicios_equipos",
+            joinColumns = @JoinColumn(name = "id_ejercicio"),
+            inverseJoinColumns = @JoinColumn(name = "id_equipo")
+    )
+    private List<EquipoEntity> equipos;
 }
