@@ -1,10 +1,12 @@
 package com.elixir_gym.persistence.entity;
 
+import com.elixir_gym.persistence.audit.AuditableEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -12,9 +14,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-public class UsuarioEntity {
+public class UsuarioEntity extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

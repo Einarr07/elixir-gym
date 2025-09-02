@@ -1,19 +1,22 @@
 package com.elixir_gym.persistence.entity;
 
+import com.elixir_gym.persistence.audit.AuditableEntity;
 import com.elixir_gym.persistence.entity.ids.EntrenamientoEjercicioId;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "entrenamientos_ejercicios")
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-public class EntrenamientoEjercicioEntity {
+public class EntrenamientoEjercicioEntity extends AuditableEntity {
 
     @EmbeddedId
     private EntrenamientoEjercicioId id;
