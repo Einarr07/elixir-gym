@@ -16,7 +16,6 @@ public interface IEquipoMapper {
     @Mapping(source = "nombre", target = "nombre")
     @Mapping(source = "tipo", target = "tipo")
     @Mapping(source = "estado", target = "estado")
-    @Mapping(source = "ejercicios", target = "ejercicios")
     EquipoDto toDto(EquipoEntity equipoEntity);
     List<EquipoDto> toDtoList(Iterable<EquipoEntity> equipoEntities);
 
@@ -26,6 +25,5 @@ public interface IEquipoMapper {
     @Mapping(source = "nombre", target = "nombre")
     @Mapping(source = "tipo", target = "tipo")
     @Mapping(source = "estado", target = "estado")
-    @Mapping(source = "ejercicios", target = "ejercicios")
     void updateEquipo(ActualizarEquipoDto actualizarEquipoDto, @MappingTarget EquipoEntity equipoEntity);
 }

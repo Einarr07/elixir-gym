@@ -1,5 +1,7 @@
 package com.elixir_gym.domain.dto;
 
+import java.util.List;
+
 public record EjercicioDto(
         Long idEjercicio,
         String nombre,
@@ -8,6 +10,6 @@ public record EjercicioDto(
         String imagen,
         String equipo_necesario,
         GrupoMuscularDto grupo_muscular,
-        EquipoDto equipos
+        List<EquipoDto> equipos
 ) {
 }

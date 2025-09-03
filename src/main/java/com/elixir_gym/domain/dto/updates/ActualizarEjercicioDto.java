@@ -5,6 +5,8 @@ import com.elixir_gym.domain.dto.GrupoMuscularDto;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 public record ActualizarEjercicioDto(
         @NotEmpty(message = "El nombre es obligatorio")
         String nombre,
@@ -23,6 +25,6 @@ public record ActualizarEjercicioDto(
         GrupoMuscularDto grupo_muscular,
 
         @NotNull(message= "El equipo es obligatorio")
-        EquipoDto equipos
+        List<EquipoDto> equipos
 ) {
 }

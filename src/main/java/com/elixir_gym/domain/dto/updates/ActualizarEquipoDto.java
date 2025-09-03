@@ -12,9 +12,6 @@ public record ActualizarEquipoDto(
         String tipo,
 
         @NotEmpty(message = "El estado del equipo es obligatorio")
-        String estado,
-
-        @NotNull(message = "El ejercicio es obligatorio")
-        EjercicioDto ejercicios
+        String estado
 ) {
 }
