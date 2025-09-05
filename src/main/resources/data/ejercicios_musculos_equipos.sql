@@ -13,6 +13,19 @@ VALUES ('Pecho', 'Ejercicios para desarrollar la zona pectoral'),
        ('Abdomen', 'Ejercicios para core y abdominales');
 
 -- ========================================
+-- Insertar Equipos
+-- ========================================
+INSERT INTO equipos (nombre, tipo, estado)
+VALUES ('Barra olímpica', 'LIBRE', 'DISPONIBLE'),
+       ('Mancuernas', 'LIBRE', 'DISPONIBLE'),
+       ('Banco plano', 'MAQUINA', 'DISPONIBLE'),
+       ('Máquina de prensa', 'MAQUINA', 'DISPONIBLE'),
+       ('Polea', 'MAQUINA', 'DISPONIBLE'),
+       ('Colchoneta', 'ACCESORIO', 'DISPONIBLE'),
+       ('Paralelas', 'ESTRUCTURA', 'DISPONIBLE'),
+       ('Barra fija', 'ESTRUCTURA', 'DISPONIBLE');
+
+-- ========================================
 -- Insertar Ejercicios para cada Grupo
 -- ========================================
 
@@ -69,3 +82,68 @@ INSERT INTO ejercicios (nombre, descripcion, video_url, imagen_url, equipo_neces
 VALUES ('Crunch abdominal', 'Ejercicio básico para abdominales', NULL, NULL, 'Colchoneta', 9),
        ('Plancha', 'Trabajo isométrico de core', NULL, NULL, 'Colchoneta', 9),
        ('Elevaciones de pierna', 'Trabajo de abdomen inferior', NULL, NULL, 'Barra fija o colchoneta', 9);
+
+-- ========================================
+-- Insertar relaciones Ejercicios - Equipos
+-- (tabla intermedia: ejercicios_equipos)
+-- ========================================
+
+-- Press de banca -> Barra olímpica + Banco plano
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (1, 1),
+       (1, 3);
+
+-- Aperturas con mancuernas -> Mancuernas + Banco plano
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (2, 2),
+       (2, 3);
+
+-- Fondos en paralelas -> Paralelas
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (3, 7);
+
+-- Dominadas -> Barra fija
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (4, 8);
+
+-- Remo con barra -> Barra olímpica
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (5, 1);
+
+-- Peso muerto -> Barra olímpica
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (6, 1);
+
+-- Curl con barra -> Barra olímpica
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (7, 1);
+
+-- Curl alternado con mancuernas -> Mancuernas
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (8, 2);
+
+-- Curl en predicador -> Banco plano + Barra olímpica
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (9, 3),
+       (9, 1);
+
+-- Extensiones en polea -> Polea
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (11, 5);
+
+-- Sentadillas -> Barra olímpica
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (16, 1);
+
+-- Prensa de pierna -> Máquina de prensa
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (17, 4);
+
+-- Hip thrust -> Banco plano + Barra olímpica
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (19, 3),
+       (19, 1);
+
+-- Plancha -> Colchoneta
+INSERT INTO ejercicios_equipos (id_ejercicio, id_equipo)
+VALUES (26, 6);
