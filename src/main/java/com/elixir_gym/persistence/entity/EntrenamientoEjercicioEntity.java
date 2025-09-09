@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-public class EntrenamientoEjercicioEntity extends AuditableEntity {
+public class  EntrenamientoEjercicioEntity extends AuditableEntity {
 
     @EmbeddedId
     private EntrenamientoEjercicioId id;
