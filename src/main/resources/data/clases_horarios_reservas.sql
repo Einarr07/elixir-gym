@@ -38,3 +38,19 @@ VALUES
     ('2025-09-22', '09:00:00', '09:30:00', 8, 3), -- HIIT Express con entrenador 3
     ('2025-09-22', '10:00:00', '10:50:00', 9, 2), -- Box Training con entrenador 2
     ('2025-09-22', '11:00:00', '11:35:00', 10, 3); -- Stretch & Relax con entrenador 3
+
+-- ========================================
+-- Insertar reservas
+-- ========================================
+INSERT INTO clases_reservadas (fecha_reserva, estado_reserva, id_usuario, id_horario)
+VALUES
+    ('2025-10-02', 'PENDIENTE', 1, 1),
+    ('2025-10-03', 'CONFIRMADA', 2, 2),
+    ('2025-10-04', 'CANCELADA', 3, 3),
+    ('2025-10-05', 'PENDIENTE', 4, 4),
+    ('2025-10-06', 'CONFIRMADA', 5, 5),
+    ('2025-10-07', 'PENDIENTE', 6, 6),
+    ('2025-10-08', 'CONFIRMADA', 7, 7),
+    ('2025-10-09', 'CANCELADA', 8, 8),
+    ('2025-10-10', 'PENDIENTE', 9, 9),
+    ('2025-10-11', 'CONFIRMADA', 10, 10);
