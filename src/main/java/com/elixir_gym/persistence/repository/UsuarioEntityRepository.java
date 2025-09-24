@@ -31,7 +31,7 @@ public class UsuarioEntityRepository implements IUsuarioRepository {
 
     @Override
     public Optional<UsuarioDto> findByEmail(String correo) {
-        return Optional.ofNullable(usuarioMapper.toDto(crudUsuarioEntity.findByEmail(correo)));
+        return crudUsuarioEntity.findByEmail(correo).map(usuarioMapper::toDto);
     }
 
     @Override
