@@ -58,7 +58,7 @@ public class UsuarioEntity extends AuditableEntity {
     @Column(name = "estado_usuario", nullable = false)
     private Boolean estadoUsuario;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "usuarios_roles", // nombre de la tabla intermedia
             joinColumns = @JoinColumn(name = "id_usuario"),
