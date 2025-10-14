@@ -1,16 +1,14 @@
 package com.elixir_gym.persistence.mapper;
 
-import com.elixir_gym.domain.dto.updates.ActualizarUsuarioDto;
 import com.elixir_gym.domain.dto.UsuarioDto;
+import com.elixir_gym.domain.dto.updates.ActualizarUsuarioDto;
 import com.elixir_gym.persistence.entity.UsuarioEntity;
-import org.mapstruct.InheritInverseConfiguration;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {EstadoUsuarioMapper.class, IRolMapper.class})
+@Mapper(componentModel = "spring", uses = {EstadoUsuarioMapper.class, IRolMapper.class},
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface IUsuarioMapper {
 
     @Mapping(source = "nombre", target = "nombre")
@@ -25,6 +23,7 @@ public interface IUsuarioMapper {
     @Mapping(source = "estadoUsuario", target = "estado", qualifiedByName = "booleanToString")
     @Mapping(source = "roles", target = "roles")
     UsuarioDto toDto(UsuarioEntity usuarioEntity);
+
     List<UsuarioDto> toDtoList(Iterable<UsuarioEntity> usuarioEntityIterable);
 
     @InheritInverseConfiguration
@@ -34,7 +33,7 @@ public interface IUsuarioMapper {
     @Mapping(source = "nombre", target = "nombre")
     @Mapping(source = "apellido", target = "apellido")
     @Mapping(source = "correo", target = "email")
-    @Mapping(source = "contrasenia", target = "password")
+    @Mapping(source = "contrasenia", target = "password", ignore = true)
     @Mapping(source = "telefono", target = "telefono")
     @Mapping(source = "fechaNacimiento", target = "fechaNacimiento")
     @Mapping(source = "peso", target = "peso")

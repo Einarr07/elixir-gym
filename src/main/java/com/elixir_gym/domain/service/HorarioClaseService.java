@@ -1,6 +1,5 @@
 package com.elixir_gym.domain.service;
 
-import com.elixir_gym.domain.dto.ClaseDto;
 import com.elixir_gym.domain.dto.HorarioClaseDto;
 import com.elixir_gym.domain.dto.UsuarioDto;
 import com.elixir_gym.domain.dto.updates.ActualizarHorarioClaseDto;
@@ -57,8 +56,11 @@ public class HorarioClaseService {
     }
 
     public void validarEntrenador(long idUsuario) {
-        UsuarioDto entrenador = usuarioService.findById(idUsuario)
-                .orElseThrow(() -> new NoEsEntrenadorException(idUsuario));
+        UsuarioDto entrenador = usuarioService.findById(idUsuario);
+
+        if (entrenador == null) {
+            throw new NoEsEntrenadorException(idUsuario);
+        }
 
         boolean esEntrenador = entrenador.roles().stream()
                 .anyMatch(role -> role.rol().equalsIgnoreCase("ENTRENADOR"));
@@ -68,7 +70,7 @@ public class HorarioClaseService {
         }
     }
 
-    public void validarClase(long idClase){
+    public void validarClase(long idClase) {
         claseService.getById(idClase);
     }
 }

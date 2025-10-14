@@ -1,5 +1,7 @@
 package com.elixir_gym.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -8,7 +10,7 @@ public record UsuarioDto(
         String nombre,
         String apellido,
         String correo,
-        String contrasenia,
+        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) String contrasenia,
         String telefono,
         LocalDate fechaNacimiento,
         Double peso,

@@ -1,7 +1,7 @@
 package com.elixir_gym.web.controller;
 
-import com.elixir_gym.domain.dto.updates.ActualizarUsuarioDto;
 import com.elixir_gym.domain.dto.UsuarioDto;
+import com.elixir_gym.domain.dto.updates.ActualizarUsuarioDto;
 import com.elixir_gym.domain.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -37,9 +37,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "404", description = "Usuario no encontrado")
     })
     public ResponseEntity<UsuarioDto> findById(@PathVariable Long id) {
-        return usuarioService.findById(id)
-                .map(userDto -> new ResponseEntity<>(userDto, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return ResponseEntity.ok(usuarioService.findById(id));
     }
 
     @PostMapping("/crear")
@@ -58,9 +56,7 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDto> update(
             @PathVariable long id,
             @Valid @RequestBody ActualizarUsuarioDto usuarioDto) {
-        return usuarioService.update(id, usuarioDto)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(usuarioService.update(id, usuarioDto));
     }
 
     @DeleteMapping("/eliminar/{id}")

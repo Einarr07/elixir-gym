@@ -1,7 +1,8 @@
 package com.elixir_gym.domain.service;
 
-import com.elixir_gym.domain.dto.updates.ActualizarUsuarioDto;
 import com.elixir_gym.domain.dto.UsuarioDto;
+import com.elixir_gym.domain.dto.updates.ActualizarUsuarioDto;
+import com.elixir_gym.domain.exception.CorreoExeption;
 import com.elixir_gym.domain.exception.CorreoRegistradoException;
 import com.elixir_gym.domain.exception.UsuarioInexistenteException;
 import com.elixir_gym.domain.repository.IUsuarioRepository;
@@ -9,7 +10,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -21,10 +21,8 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public Optional<UsuarioDto> findById(long id) {
-
+    public UsuarioDto findById(long id) {
         return existenceChecker(id);
-
     }
 
     public UsuarioDto save(UsuarioDto usuarioDto) {
@@ -35,10 +33,10 @@ public class UsuarioService {
         return usuarioRepository.save(usuarioDto);
     }
 
-    public Optional<UsuarioDto> update(long id, ActualizarUsuarioDto usuarioDto) {
+    public UsuarioDto update(long id, ActualizarUsuarioDto usuarioDto) {
         existenceChecker(id);
 
-        return usuarioRepository.update(id, usuarioDto);
+        return usuarioRepository.update(id, usuarioDto).orElseThrow(() -> new UsuarioInexistenteException(id));
     }
 
     public void deleteById(Long id) {
@@ -47,14 +45,13 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    private Optional<UsuarioDto> existenceChecker(long id) {
-        Optional<UsuarioDto> usuarioExistente = usuarioRepository.findById(id);
+    public UsuarioDto findByCorreo(String correo) {
+        return usuarioRepository.findByEmail(correo)
+                .orElseThrow(() -> new CorreoExeption(correo));
+    }
 
-        if (usuarioExistente.isEmpty()) {
-            throw new UsuarioInexistenteException(id);
-        }
-
-        return usuarioExistente;
+    private UsuarioDto existenceChecker(long id) {
+        return usuarioRepository.findById(id).orElseThrow(() -> new UsuarioInexistenteException(id));
     }
 
 }

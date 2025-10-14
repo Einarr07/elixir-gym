@@ -2,6 +2,7 @@ package com.elixir_gym.web.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,13 +17,22 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable) //
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/ejercicio/**").hasAnyRole("ENTRENADOR", "ADMIN")
-                        .requestMatchers("/api/entrenamiento/**").hasRole("ENTRENADOR")
-                        .requestMatchers("/api/rol/**").hasRole("CLIENTE")
+                        // Enpoints publicos
+                        .requestMatchers("/api/auth/me").hasAnyRole("CLIENTE", "ADMIN")
+
+                        // Usuarios
+                        .requestMatchers("/api/usuario/todos").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/usuario/crear").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/usuario/eliminar/*").hasRole("ADMIN")
+
+                        // Cliente
+                        .requestMatchers(HttpMethod.GET, "/api/usuario/*").hasAnyRole("CLIENTE", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/usuario/actualizar/*").hasAnyRole("CLIENTE", "ADMIN")
                         .requestMatchers("/api/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 )
-                .httpBasic(basic -> {});
+                .httpBasic(basic -> {
+                });
 
         return http.build();
     }
