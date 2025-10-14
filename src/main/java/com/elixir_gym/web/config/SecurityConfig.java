@@ -28,6 +28,9 @@ public class SecurityConfig {
                         // Cliente
                         .requestMatchers(HttpMethod.GET, "/api/usuario/*").hasAnyRole("CLIENTE", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/usuario/actualizar/*").hasAnyRole("CLIENTE", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/horario-clase/todos").hasAnyRole("CLIENTE", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/clase/**").hasAnyRole("CLIENTE", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/clase-reservada/crear").hasAnyRole("CLIENTE", "ADMIN")
                         .requestMatchers("/api/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 )
