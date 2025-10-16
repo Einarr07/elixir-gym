@@ -48,6 +48,18 @@ public class ClaseReservadaController {
         return ResponseEntity.ok(claseReservadaService.getById(id));
     }
 
+    @Operation(summary = "Obetener todas las reservaciones por usuario", description = "Devuelve todas las reservas" +
+            "que haya hecho un usuario")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Reservas encontradas",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ClaseReservadaDto.class))),
+    })
+    @GetMapping("/mis-reservas/{idUser}")
+    public ResponseEntity<List<ClaseReservadaDto>> findByUser(@PathVariable long idUser) {
+        return ResponseEntity.ok(claseReservadaService.findByUser(idUser));
+    }
+
     @Operation(summary = "Crear una nueva reservación", description = "Registra una nueva clase reservada por un cliente.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Reservación creada exitosamente",

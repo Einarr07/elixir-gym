@@ -17,22 +17,22 @@ public class ClaseReservadaService {
 
     private final HorarioClaseService horarioClaseService;
 
-    public List<ClaseReservadaDto> getAll(){
+    public List<ClaseReservadaDto> getAll() {
         return claseReservadaRepository.findAll();
     }
 
-    public ClaseReservadaDto getById(long id){
+    public ClaseReservadaDto getById(long id) {
         return claseReservadaChecker(id);
     }
 
-    public ClaseReservadaDto save(ClaseReservadaDto claseReservadaDto){
+    public ClaseReservadaDto save(ClaseReservadaDto claseReservadaDto) {
 
         validarHorario(claseReservadaDto.horario().idHorario());
 
         return claseReservadaRepository.save(claseReservadaDto);
     }
 
-    public ClaseReservadaDto update(long id, ActualizarClaseReservadaDto actualizarClaseReservadaDto){
+    public ClaseReservadaDto update(long id, ActualizarClaseReservadaDto actualizarClaseReservadaDto) {
 
         validarHorario(actualizarClaseReservadaDto.horario().idHorario());
 
@@ -40,17 +40,21 @@ public class ClaseReservadaService {
                 .orElseThrow(() -> new ClaseReservadaException(id));
     }
 
-    public void deleteById(long id){
+    public List<ClaseReservadaDto> findByUser(long idUser) {
+        return claseReservadaRepository.findByUser(idUser);
+    }
+
+    public void deleteById(long id) {
         claseReservadaChecker(id);
         claseReservadaRepository.deleteById(id);
     }
 
-    public ClaseReservadaDto claseReservadaChecker(long id){
+    public ClaseReservadaDto claseReservadaChecker(long id) {
         return claseReservadaRepository.findById(id)
                 .orElseThrow(() -> new ClaseReservadaException(id));
     }
 
-    public void validarHorario(long idHorario){
+    public void validarHorario(long idHorario) {
         horarioClaseService.getById(idHorario);
     }
 }

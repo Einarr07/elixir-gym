@@ -14,7 +14,9 @@ public interface IClaseReservadaRepositoroy {
 
     ClaseReservadaDto save(ClaseReservadaDto dto);
 
-    Optional<ClaseReservadaDto>  update(long id, ActualizarClaseReservadaDto dto);
+    Optional<ClaseReservadaDto> update(long id, ActualizarClaseReservadaDto dto);
+
+    List<ClaseReservadaDto> findByUser(long id);
 
     void deleteById(long id);
 }

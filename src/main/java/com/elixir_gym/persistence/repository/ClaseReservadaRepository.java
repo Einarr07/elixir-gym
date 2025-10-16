@@ -45,6 +45,12 @@ public class ClaseReservadaRepository implements IClaseReservadaRepositoroy {
     }
 
     @Override
+    public List<ClaseReservadaDto> findByUser(long id) {
+        return claseReservadaMapper.toDtoList(crudClaseReservadaEntity.findAllByUsuario_IdUsuario(id));
+    }
+
+
+    @Override
     public void deleteById(long id) {
         crudClaseReservadaEntity.deleteById(id);
     }
