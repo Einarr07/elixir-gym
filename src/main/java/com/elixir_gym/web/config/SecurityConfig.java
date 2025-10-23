@@ -39,6 +39,12 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/clase/crear").hasAnyRole("ENTRENADOR", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/clase/actualizar/*").hasAnyRole("ENTRENADOR", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/clase/eliminar/*").hasAnyRole("ENTRENADOR", "ADMIN")
+                        // Entrenador - Entrenamiento
+                        .requestMatchers(HttpMethod.GET, "/api/entrenamientos/todos").hasAnyRole("ENTRENADOR", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "api/entrenamientos/*").hasAnyRole("ENTRENADOR", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/entrenamientos/crear").hasAnyRole("ENTRENADOR", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/entrenamientos/actualizar/*").hasAnyRole("ENTRENADOR", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/entrenamientos/eliminar/*").hasAnyRole("ENTRENADOR", "ADMIN")
 
                         .requestMatchers("/api/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
