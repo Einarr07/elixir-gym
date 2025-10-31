@@ -1,21 +1,14 @@
 package com.elixir_gym.web.controller;
 
+import com.elixir_gym.domain.dto.EjercicioAsignadoDto;
 import com.elixir_gym.domain.dto.EntrenamientoEjercicioDto;
-import com.elixir_gym.domain.dto.updates.ActualizarEntrenamientoDto;
 import com.elixir_gym.domain.dto.updates.ActualizarEntrenamientoEjercicioDto;
-import com.elixir_gym.domain.exception.EjercicioInexistenteException;
-import com.elixir_gym.domain.exception.EntrenamientoInexistenteException;
-import com.elixir_gym.domain.service.EjercicioService;
 import com.elixir_gym.domain.service.EntrenamientoEjercicioService;
-import com.elixir_gym.domain.service.EntrenamientoService;
-import com.elixir_gym.persistence.entity.ids.EntrenamientoEjercicioId;
-import com.elixir_gym.persistence.repository.EjercicioRepository;
-import com.elixir_gym.persistence.repository.EntrenamientoRepository;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -43,6 +36,18 @@ public class EntrenamientoEjercicioController {
     @GetMapping("/todos")
     public ResponseEntity<List<EntrenamientoEjercicioDto>> getAll() {
         return ResponseEntity.ok(entrenamientoEjercicioService.findAll());
+    }
+
+    @Operation(summary = "Obtener todos los entrenamientos asignasdos a un ejercicio",
+            description = "Devuelve todos los ejerccios de un mismo entrenamiento")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista obtenida exitosamente",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = EntrenamientoEjercicioDto.class)))
+    })
+    @GetMapping("/entrenamiento/{idEntrenamiento}")
+    public ResponseEntity<List<EjercicioAsignadoDto>> findByIdEntrenamiento(@PathVariable long idEntrenamiento) {
+        return ResponseEntity.ok(entrenamientoEjercicioService.findAllEntrenamientoByIdEntrenamiento(idEntrenamiento));
     }
 
     @Operation(summary = "Obtener una relación por IDs",
@@ -86,7 +91,7 @@ public class EntrenamientoEjercicioController {
             @PathVariable long idEntrenamiento,
             @PathVariable long idEjercicio,
             @Valid @RequestBody ActualizarEntrenamientoEjercicioDto entrenamientoEjercicioDto
-    ){
+    ) {
         return ResponseEntity.ok(entrenamientoEjercicioService
                 .updateEntrenamientoEjericio(idEntrenamiento, idEjercicio, entrenamientoEjercicioDto));
     }
@@ -101,7 +106,7 @@ public class EntrenamientoEjercicioController {
     public ResponseEntity<Void> deleteById(
             @PathVariable long idEntrenamiento,
             @PathVariable long idEjercicio
-    ){
+    ) {
         entrenamientoEjercicioService.deleteById(idEntrenamiento, idEjercicio);
         return ResponseEntity.noContent().build();
     }

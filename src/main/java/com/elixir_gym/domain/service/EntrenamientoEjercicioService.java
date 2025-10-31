@@ -1,12 +1,11 @@
 package com.elixir_gym.domain.service;
 
+import com.elixir_gym.domain.dto.EjercicioAsignadoDto;
 import com.elixir_gym.domain.dto.EntrenamientoEjercicioDto;
 import com.elixir_gym.domain.dto.updates.ActualizarEntrenamientoEjercicioDto;
 import com.elixir_gym.domain.exception.EjercicioInexistenteException;
 import com.elixir_gym.domain.exception.EntrenamientoEjercicioException;
 import com.elixir_gym.domain.exception.EntrenamientoInexistenteException;
-import com.elixir_gym.persistence.entity.EntrenamientoEjercicioEntity;
-import com.elixir_gym.persistence.entity.ids.EntrenamientoEjercicioId;
 import com.elixir_gym.persistence.repository.EjercicioRepository;
 import com.elixir_gym.persistence.repository.EntrenamientoEjercicioRepository;
 import com.elixir_gym.persistence.repository.EntrenamientoRepository;
@@ -14,7 +13,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -26,6 +24,10 @@ public class EntrenamientoEjercicioService {
 
     public List<EntrenamientoEjercicioDto> findAll() {
         return repository.findAllEntrenamientoEjercicio();
+    }
+
+    public List<EjercicioAsignadoDto> findAllEntrenamientoByIdEntrenamiento(Long idEntrenamiento) {
+        return repository.findByEntrenamiento_IdEntrenamiento(idEntrenamiento);
     }
 
     public EntrenamientoEjercicioDto findById(long idEntrenamiento, long idEjercicio) {
@@ -46,7 +48,7 @@ public class EntrenamientoEjercicioService {
             long idEntrenamiento,
             long idEjercicio,
             ActualizarEntrenamientoEjercicioDto entrenamientoDto
-    ){
+    ) {
         existenceChecker(idEntrenamiento, idEjercicio);
         return repository.update(idEntrenamiento, idEjercicio, entrenamientoDto)
                 .orElseThrow(() -> new EntrenamientoEjercicioException(idEntrenamiento, idEjercicio));

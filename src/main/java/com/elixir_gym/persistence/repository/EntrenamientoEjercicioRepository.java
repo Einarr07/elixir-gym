@@ -1,11 +1,13 @@
 package com.elixir_gym.persistence.repository;
 
+import com.elixir_gym.domain.dto.EjercicioAsignadoDto;
 import com.elixir_gym.domain.dto.EntrenamientoEjercicioDto;
 import com.elixir_gym.domain.dto.updates.ActualizarEntrenamientoEjercicioDto;
 import com.elixir_gym.domain.repository.IEntrenamientoEjercicioRepository;
 import com.elixir_gym.persistence.crud.ICrudEntrenamientoEjercicioEntity;
 import com.elixir_gym.persistence.entity.EntrenamientoEjercicioEntity;
 import com.elixir_gym.persistence.entity.ids.EntrenamientoEjercicioId;
+import com.elixir_gym.persistence.mapper.IEjercicioAsignadoMapper;
 import com.elixir_gym.persistence.mapper.IEntrenamientoEjercicioMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -19,11 +21,18 @@ public class EntrenamientoEjercicioRepository implements IEntrenamientoEjercicio
 
     private final ICrudEntrenamientoEjercicioEntity crudEntrenamientoEjercicioEntity;
     private final IEntrenamientoEjercicioMapper entrenamientoEjercicioMapper;
+    private final IEjercicioAsignadoMapper ejercicioAsignadoMapper;
 
     @Override
     public List<EntrenamientoEjercicioDto> findAllEntrenamientoEjercicio() {
         return entrenamientoEjercicioMapper.toDtoList(crudEntrenamientoEjercicioEntity.findAll());
     }
+
+    @Override
+    public List<EjercicioAsignadoDto> findByEntrenamiento_IdEntrenamiento(Long idEntrenamiento) {
+        return ejercicioAsignadoMapper.toDtoList(crudEntrenamientoEjercicioEntity.findByEntrenamiento_IdEntrenamiento(idEntrenamiento));
+    }
+
 
     @Override
     public Optional<EntrenamientoEjercicioDto> findById(Long idEntrenamiento, Long idEjercicio) {
