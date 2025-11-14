@@ -28,8 +28,6 @@ public class SecurityConfig {
                         // Cliente
                         .requestMatchers(HttpMethod.GET, "/api/usuario/*").hasAnyRole("CLIENTE", "ADMIN", "ENTRENADOR")
                         .requestMatchers(HttpMethod.PUT, "/api/usuario/actualizar/*").hasAnyRole("CLIENTE", "ADMIN", "ENTRENADOR")
-                        .requestMatchers(HttpMethod.GET, "/api/horario-clase/todos").hasAnyRole("CLIENTE", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/horario-clase/*").hasAnyRole("CLIENTE", "ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/clase/**").hasAnyRole("CLIENTE", "ADMIN", "ENTRENADOR")
                         .requestMatchers(HttpMethod.POST, "/api/clase-reservada/crear").hasAnyRole("CLIENTE", "ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/clase-reservada/mis-reservas/*").hasAnyRole("CLIENTE", "ADMIN")
@@ -39,6 +37,14 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/clase/crear").hasAnyRole("ENTRENADOR", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/clase/actualizar/*").hasAnyRole("ENTRENADOR", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/clase/eliminar/*").hasAnyRole("ENTRENADOR", "ADMIN")
+                        
+                        // Horario de clases
+                        .requestMatchers(HttpMethod.GET, "/api/horario-clase/todos").hasAnyRole("CLIENTE", "ENTRENADOR", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/horario-clase/*").hasAnyRole("CLIENTE", "ENTRENADOR", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/horario-clase/crear").hasAnyRole("ENTRENADOR", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/horario-clase/actualizar/*").hasAnyRole("ENTRENADOR", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/horario-clase/eliminar/*").hasAnyRole("ENTRENADOR", "ADMIN")
+
                         // Entrenador - Entrenamiento
                         .requestMatchers(HttpMethod.GET, "/api/entrenamientos/todos").hasAnyRole("ENTRENADOR", "ADMIN")
                         .requestMatchers(HttpMethod.GET, "api/entrenamientos/*").hasAnyRole("ENTRENADOR", "ADMIN")

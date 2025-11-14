@@ -9,7 +9,7 @@ import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {IClaseMapper.class, IUsuarioMapper.class})
 public interface IHorarioClaseMapper {
 
     @Mapping(source = "fechaClase", target = "fecha")
@@ -27,22 +27,22 @@ public interface IHorarioClaseMapper {
     @Mapping(source = "fecha", target = "fechaClase")
     @Mapping(source = "hora_inicio", target = "horaInicio")
     @Mapping(source = "hora_fin", target = "horaFin")
-    @Mapping(source = "clase.idClase", target = "clase", qualifiedByName = "mapClase")
-    @Mapping(source = "entrenador.idUsuario", target = "usuario", qualifiedByName = "mapClase")
+    @Mapping(source = "clase.idClase", target = "clase", qualifiedByName = "mapClaseFromId")
+    @Mapping(source = "entrenador.idUsuario", target = "usuario", qualifiedByName = "mapUsuarioFromId")
     void updateHorarioClase(ActualizarHorarioClaseDto actualizarHorarioClaseDto,
                             @MappingTarget HorarioClaseEntity horarioClaseEntity);
 
     // Dto -> Entity
-    @Named("mapClase")
-    default ClaseEntity mapClase(Long id){
+    @Named("mapClaseFromId")
+    default ClaseEntity mapClase(Long id) {
         if (id == null) return null;
         ClaseEntity claseEntity = new ClaseEntity();
         claseEntity.setIdClase(id);
         return claseEntity;
     }
 
-    @Named("mapClase")
-    default UsuarioEntity mapUsuario(Long id){
+    @Named("mapUsuarioFromId")
+    default UsuarioEntity mapUsuario(Long id) {
         if (id == null) return null;
         UsuarioEntity usuarioEntity = new UsuarioEntity();
         usuarioEntity.setIdUsuario(id);
@@ -50,15 +50,15 @@ public interface IHorarioClaseMapper {
     }
 
     // Entity -> Dto
-    default Long mapIdUsuario(ClaseEntity claseEntity){
+    default Long mapIdUsuario(ClaseEntity claseEntity) {
         return (claseEntity == null) ? null : claseEntity.getIdClase();
     }
 
-    default Long mapIdUsuario(UsuarioEntity usuarioEntity){
+    default Long mapIdUsuario(UsuarioEntity usuarioEntity) {
         return (usuarioEntity == null) ? null : usuarioEntity.getIdUsuario();
     }
 
-    default String mapStringUsuario(UsuarioEntity usuarioEntity){
+    default String mapStringUsuario(UsuarioEntity usuarioEntity) {
         return (usuarioEntity == null) ? null : usuarioEntity.getNombre();
     }
 }

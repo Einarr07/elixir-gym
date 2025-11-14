@@ -33,7 +33,7 @@ VALUES ('2026-09-20', '08:00:00', '08:50:00', 1, 2), -- Dragon Fit con entrenado
        ('2026-09-21', '08:00:00', '08:55:00', 5, 2), -- Cross Training con entrenador 2
        ('2026-09-21', '09:00:00', '09:50:00', 6, 3), -- Baile Fit con entrenador 3
        ('2026-09-22', '08:00:00', '08:45:00', 7, 2), -- Pilates Core con entrenador 2
-       ('206-09-22', '09:00:00', '09:30:00', 8, 3),  -- HIIT Express con entrenador 3
+       ('2026-09-22', '09:00:00', '09:30:00', 8, 3), -- HIIT Express con entrenador 3
        ('2026-09-22', '10:00:00', '10:50:00', 9, 2), -- Box Training con entrenador 2
        ('2026-09-22', '11:00:00', '11:35:00', 10, 3);
 -- Stretch & Relax con entrenador 3
