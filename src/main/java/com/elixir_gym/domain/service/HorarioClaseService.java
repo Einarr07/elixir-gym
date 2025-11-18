@@ -32,7 +32,19 @@ public class HorarioClaseService {
         validarClase(horarioClaseDto.clase().idClase());
         validarEntrenador(horarioClaseDto.entrenador().idUsuario());
 
-        return horarioClaseRepository.save(horarioClaseDto);
+        HorarioClaseDto creado = horarioClaseRepository.save(horarioClaseDto);
+
+        var claseCompleta = claseService.getById(creado.clase().idClase());
+        var entrenador = usuarioService.findById(creado.entrenador().idUsuario());
+
+        return new HorarioClaseDto(
+                creado.idHorario(),
+                creado.fecha(),
+                creado.hora_inicio(),
+                creado.hora_fin(),
+                claseCompleta,
+                entrenador
+        );
     }
 
     public HorarioClaseDto update(long id, ActualizarHorarioClaseDto actualizarHorarioClaseDto) {
@@ -40,8 +52,19 @@ public class HorarioClaseService {
         validarClase(actualizarHorarioClaseDto.clase().idClase());
         validarEntrenador(actualizarHorarioClaseDto.entrenador().idUsuario());
 
-        return horarioClaseRepository.update(id, actualizarHorarioClaseDto)
-                .orElseThrow(() -> new HorarioClaseException(id));
+        HorarioClaseDto actualizado = horarioClaseRepository.update(id, actualizarHorarioClaseDto).orElseThrow(() -> new HorarioClaseException(id));
+
+        var claseCompleta = claseService.getById(actualizado.clase().idClase());
+        var entrenador = usuarioService.findById(actualizado.entrenador().idUsuario());
+
+        return new HorarioClaseDto(
+                actualizado.idHorario(),
+                actualizado.fecha(),
+                actualizado.hora_inicio(),
+                actualizado.hora_fin(),
+                claseCompleta,
+                entrenador
+        );
     }
 
     public void deleteById(long id) {
