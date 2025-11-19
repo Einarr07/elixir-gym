@@ -35,8 +35,8 @@ public class ManejadorExceptionRest {
     public ResponseEntity<Error> handleDataIntegrityViolation(DataIntegrityViolationException ex) {
         // Crea un objeto Error consistente con tus otros manejadores
         Error error = new Error(
-                "DataIntegrityViolation", // Un tipo claro para el error
-                "No se puede borrar el entrenamiento porque tiene ejercicios asignados." // Tu mensaje personalizado
+                "No se puede eliminar", // Un tipo claro para el error
+                "Este registro no se puede eliminar porque está siendo usado en otra parte del sistema" // Tu mensaje personalizado
         );
 
         // Retorna una respuesta con el código 409 (Conflict) y el cuerpo del error
